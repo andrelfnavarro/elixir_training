@@ -1,8 +1,10 @@
 {application,servy,
              [{applications,[kernel,stdlib,elixir,logger]},
               {description,"servy"},
-              {modules,['Elixir.Servy','Elixir.Servy.Conv',
+              {modules,['Elixir.Servy','Elixir.Servy.Bear',
+                        'Elixir.Servy.BearController','Elixir.Servy.Conv',
                         'Elixir.Servy.FileHandler','Elixir.Servy.Handler',
-                        'Elixir.Servy.Parser','Elixir.Servy.Plugins']},
+                        'Elixir.Servy.Parser','Elixir.Servy.Plugins',
+                        'Elixir.Servy.View','Elixir.Servy.Wildthings']},
               {registered,[]},
               {vsn,"0.1.0"}]}.
