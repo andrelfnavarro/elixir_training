@@ -1,5 +1,5 @@
 {application,servy,
-             [{applications,[kernel,stdlib,elixir,logger]},
+             [{applications,[kernel,stdlib,elixir,logger,poison]},
               {description,"servy"},
               {modules,['Elixir.Servy','Elixir.Servy.Bear',
                         'Elixir.Servy.BearController','Elixir.Servy.Conv',

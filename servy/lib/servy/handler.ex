@@ -21,6 +21,7 @@ defmodule Servy.Handler do
     |> route
     |> track
     # |> emojify
+    |> put_content_length
     |> format_response
   end
 
@@ -35,6 +36,10 @@ defmodule Servy.Handler do
     |> handle_file(conv)
   end
 
+  def route(%Conv{ method: "GET", path: "/api/bears"} = conv) do
+    Servy.Api.BearController.index(conv)
+  end
+
   def route(%Conv{ method: "GET", path: "/bears"} = conv) do
     BearController.index(conv)
   end
@@ -46,6 +51,10 @@ defmodule Servy.Handler do
 
   def route(%Conv{ method: "DELETE", path: "/bears/" <> _id} = conv) do
     BearController.delete(conv, conv.params)
+  end
+
+  def route(%Conv{method: "POST", path: "/api/bears"} = conv) do
+    Servy.Api.BearController.create(conv, conv.params)
   end
 
   def route(%Conv{method: "POST", path: "/bears"} = conv) do
@@ -73,11 +82,21 @@ defmodule Servy.Handler do
   def format_response(%Conv{} = conv) do
     """
     HTTP/1.1 #{Conv.full_status(conv)}\r
-    Content-Type: text/html\r
-    Content-Length: #{String.length(conv.resp_body)}\r
+    #{format_response_headers(conv)}
     \r
     #{conv.resp_body}
     """
+  end
+
+  defp format_response_headers(conv) do
+    Enum.map(conv.resp_headers, fn {key, value} ->
+      "#{key}: #{value}\r"
+    end) |> Enum.sort |> Enum.reverse |> Enum.join("\n")
+  end
+
+  def put_content_length(conv) do
+    headers = Map.put(conv.resp_headers, "Content-Length", String.length(conv.resp_body))
+    %{ conv | resp_headers: headers }
   end
   # def emojify(%Conv{status: 200} = conv) do
   #   emojies = String.duplicate("🎉", 5)
