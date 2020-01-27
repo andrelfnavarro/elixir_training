@@ -4,8 +4,9 @@
               {modules,['Elixir.Servy','Elixir.Servy.Api.BearController',
                         'Elixir.Servy.Bear','Elixir.Servy.BearController',
                         'Elixir.Servy.Conv','Elixir.Servy.FileHandler',
-                        'Elixir.Servy.Handler','Elixir.Servy.HttpServer',
-                        'Elixir.Servy.Parser','Elixir.Servy.Plugins',
-                        'Elixir.Servy.View','Elixir.Servy.Wildthings']},
+                        'Elixir.Servy.Handler','Elixir.Servy.HttpClient',
+                        'Elixir.Servy.HttpServer','Elixir.Servy.Parser',
+                        'Elixir.Servy.Plugins','Elixir.Servy.View',
+                        'Elixir.Servy.Wildthings']},
               {registered,[]},
               {vsn,"0.1.0"}]}.

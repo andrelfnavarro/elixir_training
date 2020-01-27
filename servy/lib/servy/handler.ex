@@ -17,12 +17,21 @@ defmodule Servy.Handler do
     request
     |> parse
     |> rewrite_path
-    |> log
     |> route
     |> track
-    # |> emojify
     |> put_content_length
     |> format_response
+  end
+
+  def route(%Conv{ method: "GET", path: "/kaboom" } = conv) do
+    raise "Kaboom!"
+    %{ conv | status: 200, resp_body: "Awake!" }
+  end
+
+  def route(%Conv{ method: "GET", path: "/hibernate/" <> time } = conv) do
+    time |> String.to_integer |> :timer.sleep
+
+    %{ conv | status: 200, resp_body: "Awake!" }
   end
 
   def route(%Conv{ method: "GET", path: "/wildthings"} = conv) do
@@ -98,12 +107,4 @@ defmodule Servy.Handler do
     headers = Map.put(conv.resp_headers, "Content-Length", String.length(conv.resp_body))
     %{ conv | resp_headers: headers }
   end
-  # def emojify(%Conv{status: 200} = conv) do
-  #   emojies = String.duplicate("🎉", 5)
-  #   body = emojies <> "\n" <> conv.resp_body <> "\n" <> emojies
-
-  #   %{ conv | resp_body: body }
-  # end
-
-  # def emojify(%Conv{} = conv), do: conv
 end
