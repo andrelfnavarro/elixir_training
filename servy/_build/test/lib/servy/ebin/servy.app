@@ -7,7 +7,7 @@
                         'Elixir.Servy.FileHandler','Elixir.Servy.Handler',
                         'Elixir.Servy.HttpClient','Elixir.Servy.HttpServer',
                         'Elixir.Servy.Parser','Elixir.Servy.Plugins',
-                        'Elixir.Servy.VideoCam','Elixir.Servy.View',
-                        'Elixir.Servy.Wildthings']},
+                        'Elixir.Servy.Tracker','Elixir.Servy.VideoCam',
+                        'Elixir.Servy.View','Elixir.Servy.Wildthings']},
               {registered,[]},
               {vsn,"0.1.0"}]}.
