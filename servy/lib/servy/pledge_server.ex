@@ -65,18 +65,3 @@ defmodule Servy.PledgeServer do
     [{"wilma", 15}, {"fred", 25}]
   end
 end
-
-alias Servy.PledgeServer
-
-{:ok, pid} = PledgeServer.start()
-
-send pid, {:stop, "hammertime"}
-
-
-IO.inspect PledgeServer.create_pledge("larry", 10)
-PledgeServer.set_cache_size(2)
-
-
-IO.inspect PledgeServer.recent_pledges()
-
-IO.inspect PledgeServer.total_pledged()
