@@ -9,8 +9,10 @@
                         'Elixir.Servy.GenericServer','Elixir.Servy.Handler',
                         'Elixir.Servy.HttpClient','Elixir.Servy.HttpServer',
                         'Elixir.Servy.Parser','Elixir.Servy.PledgeController',
-                        'Elixir.Servy.PledgeServer','Elixir.Servy.Plugins',
-                        'Elixir.Servy.Tracker','Elixir.Servy.VideoCam',
-                        'Elixir.Servy.View','Elixir.Servy.Wildthings']},
+                        'Elixir.Servy.PledgeServer',
+                        'Elixir.Servy.PledgeServer.State',
+                        'Elixir.Servy.Plugins','Elixir.Servy.Tracker',
+                        'Elixir.Servy.VideoCam','Elixir.Servy.View',
+                        'Elixir.Servy.Wildthings']},
               {registered,[]},
               {vsn,"0.1.0"}]}.
