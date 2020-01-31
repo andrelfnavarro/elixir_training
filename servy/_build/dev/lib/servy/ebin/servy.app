@@ -1,6 +1,6 @@
 {application,servy,
              [{applications,[kernel,stdlib,elixir,logger,poison,httpoison]},
-              {description,"servy"},
+              {description,"A humble HTTP server"},
               {modules,['Elixir.ImageApi','Elixir.Servy',
                         'Elixir.Servy.Api.BearController','Elixir.Servy.Bear',
                         'Elixir.Servy.BearController','Elixir.Servy.Conv',
@@ -18,4 +18,6 @@
                         'Elixir.Servy.VideoCam','Elixir.Servy.View',
                         'Elixir.Servy.Wildthings']},
               {registered,[]},
-              {vsn,"0.1.0"}]}.
+              {vsn,"0.1.0"},
+              {mod,{'Elixir.Servy',[]}},
+              {env,[{port,3000}]}]}.
