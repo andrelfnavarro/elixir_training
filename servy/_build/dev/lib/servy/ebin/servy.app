@@ -12,7 +12,10 @@
                         'Elixir.Servy.PledgeServer',
                         'Elixir.Servy.PledgeServer.State',
                         'Elixir.Servy.Plugins','Elixir.Servy.SensorServer',
-                        'Elixir.Servy.Tracker','Elixir.Servy.VideoCam',
-                        'Elixir.Servy.View','Elixir.Servy.Wildthings']},
+                        'Elixir.Servy.SensorServer.State',
+                        'Elixir.Servy.ServicesSupervisor',
+                        'Elixir.Servy.Supervisor','Elixir.Servy.Tracker',
+                        'Elixir.Servy.VideoCam','Elixir.Servy.View',
+                        'Elixir.Servy.Wildthings']},
               {registered,[]},
               {vsn,"0.1.0"}]}.
