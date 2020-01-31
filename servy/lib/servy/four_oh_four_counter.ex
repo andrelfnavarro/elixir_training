@@ -1,48 +1,48 @@
 defmodule Servy.FourOhFourCounter do
+
   @name :four_oh_four_counter
 
-  #Client Interface
-  def start do
+  use GenServer
+
+  # Client Interface
+
+  def start_link(_arg) do
     IO.puts "Starting the 404 counter..."
-    pid = spawn(__MODULE__, :listen_loop, [%{}])
-    Process.register(pid, @name)
-    pid
+    GenServer.start_link(__MODULE__, %{}, name: @name)
   end
 
   def bump_count(path) do
-    send @name, {self(), :bump_count, path}
-
-    receive do {:response, count} -> count end
+    GenServer.call @name, {:bump_count, path}
   end
 
   def get_counts do
-    send @name, {self(), :get_counts}
-
-    receive do {:response, counts} -> counts end
+    GenServer.call @name, :get_counts
   end
 
   def get_count(path) do
-    send @name, {self(), :get_count, path}
-
-    receive do {:response, count} -> count end
+    GenServer.call @name, {:get_count, path}
   end
 
-  def listen_loop(state) do
-    receive do
-      {sender, :bump_count, path} ->
-        new_state = Map.update(state, path, 1, &(&1 + 1))
-        send sender, {:response, :ok}
-        listen_loop(new_state)
-      {sender, :get_counts} ->
-        send sender, {:response, state}
-        listen_loop(state)
-      {sender, :get_count, path} ->
-        count = Map.get(state, path, 0)
-        send sender, {:response, count}
-        listen_loop(state)
-      unexpected ->
-        IO.puts "Unexpected message: #{inspect unexpected}"
-        listen_loop(state)
-    end
+  def reset do
+    GenServer.cast @name, :reset
+  end
+
+  # Server Callbacks
+  def handle_call({:bump_count, path}, _from, state) do
+    new_state = Map.update(state, path, 1, &(&1 + 1))
+    {:reply, :ok, new_state}
+  end
+
+  def handle_call(:get_counts, _from, state) do
+    {:reply, state, state}
+  end
+
+  def handle_call({:get_count, path}, _from, state) do
+    count = Map.get(state, path, 0)
+    {:reply, count, state}
+  end
+
+  def handle_cast(:reset, _state) do
+    {:noreply, %{}}
   end
 end
